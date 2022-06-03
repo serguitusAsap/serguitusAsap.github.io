@@ -2,32 +2,62 @@ window.addEventListener("load", function() {
     const images = [{
             id: "#camera",
             default: true,
-            images: [{
+            images: {
+                original: {
                     src: "images/camera-1.jpg",
                     label: "2009",
                     credit: "Image Credit",
                 },
-                {
-                    src: "images/camera-2.jpg",
-                    label: "2014",
-                    credit: "Image Credit",
-                },
-            ],
+                options: [{
+                        id: "option1",
+                        src: "images/camera-2.jpg",
+                        label: "2014",
+                        credit: "Image Credit",
+                    },
+                    {
+                        id: "option2",
+                        src: "images/camera-1.jpg",
+                        label: "2014",
+                        credit: "Image Credit",
+                    },
+                    {
+                        id: "option3",
+                        src: "images/camera-2.jpg",
+                        label: "2014",
+                        credit: "Image Credit",
+                    },
+                ],
+            },
         },
         {
             id: "#sochi",
-            images: [{
+            images: {
+                original: {
                     src: "images/Sochi_11April2005.jpg",
                     label: "2005",
                     credit: "Image Credit",
                 },
-                {
-                    src: "images/Sochi_22Nov2013.jpg",
-                    label: "2013",
-                    credit: "Image Credit",
-                },
-            ],
-        }
+                options: [{
+                        id: "option1",
+                        src: "images/Sochi_22Nov2013.jpg",
+                        label: "2013",
+                        credit: "Image Credit",
+                    },
+                    {
+                        id: "option2",
+                        src: "images/Sochi_11April2005.jpg",
+                        label: "2005",
+                        credit: "Image Credit",
+                    },
+                    {
+                        id: "option3",
+                        src: "images/Sochi_22Nov2013.jpg",
+                        label: "2013",
+                        credit: "Image Credit",
+                    },
+                ],
+            },
+        },
     ];
     const sliders = [];
     let slider;
@@ -38,7 +68,10 @@ window.addEventListener("load", function() {
         el.setAttribute("class", pair.default ? "" : "hidden");
         //el.addEventListener("click", showThis);
         parent.appendChild(el);
-        slider = new juxtapose.JXSlider(pair.id, pair.images, {
+        slider = new juxtapose.JXSlider(pair.id, [
+            pair.images.original,
+            pair.images.options[0],
+        ], {
             animate: true,
             showLabels: true,
             showCredits: true,
@@ -62,5 +95,9 @@ function showThis(e) {
         "#" + e.currentTarget.dataset["id"]
     );
     selected.classList.remove("hidden");
+
+}
+
+function changeRightImage() {
 
 }

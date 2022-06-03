@@ -8,11 +8,14 @@
     <script src="https://cdn.knightlab.com/libs/juxtapose/latest/js/juxtapose.min.js"></script>
     <script src="js/slider.js"></script>
     <link rel="stylesheet" href="https://cdn.knightlab.com/libs/juxtapose/latest/css/juxtapose.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     <style>
         .thumb {
             height: 100px;
             padding: 0px;
             margin: 0px;
+            cursor: pointer
         }
         
         .hidden {
@@ -21,13 +24,23 @@
     </style>
 </head>
 
-<body>
+<body class="text-center">
     <h1>Demo page image comparisson</h1>
-    <div id="sliders"></div>
     <h2>Select image</h2>
-    <div>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+        <li><a class="dropdown-item" href="#">Separated link</a></li>
+    </ul>
+    <div class="pb-2">
         <img class="thumb" src="images/camera-1.jpg" alt="Camera Demo" data-id="camera" />
         <img class="thumb" src="images/Sochi_11April2005.jpg" alt="Sochi Demo" data-id="sochi" />
+    </div>
+
+
+    <div class="container">
+        <div id="sliders" class="text-center"></div>
     </div>
 </body>
 
