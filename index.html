@@ -4,12 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo Image Comparisson</title>
-    <script src="https://cdn.knightlab.com/libs/juxtapose/latest/js/juxtapose.min.js"></script>
+    <title>Demo Video Comparisson</title>
     <script src="js/slider.js"></script>
-    <link rel="stylesheet" href="https://cdn.knightlab.com/libs/juxtapose/latest/css/juxtapose.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/styles.css">
     <style>
         .thumb {
             height: 100px;
@@ -17,7 +14,7 @@
             margin: 0px;
             cursor: pointer
         }
-        
+
         .hidden {
             display: none;
         }
@@ -25,22 +22,17 @@
 </head>
 
 <body class="text-center">
-    <h1>Demo page image comparisson</h1>
-    <h2>Select image</h2>
-    <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Action</a></li>
-        <li><a class="dropdown-item" href="#">Another action</a></li>
-        <li><a class="dropdown-item" href="#">Something else here</a></li>
-        <li><a class="dropdown-item" href="#">Separated link</a></li>
-    </ul>
-    <div class="pb-2">
-        <img class="thumb" src="images/camera-1.jpg" alt="Camera Demo" data-id="camera" />
-        <img class="thumb" src="images/Sochi_11April2005.jpg" alt="Sochi Demo" data-id="sochi" />
-    </div>
-
-
-    <div class="container">
-        <div id="sliders" class="text-center"></div>
+    <div id="video-compare-container">
+        <video loop autoplay poster="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/dirty.jpg">
+    <source src=https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/floodplain-dirty.mp4>
+    <source src=https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/floodplain-dirty.webm>
+  </video>
+        <div id="video-clipper">
+            <video loop autoplay poster="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/clean.jpg">
+      <source src=https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/floodplain-clean.mp4>
+      <source src=https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/floodplain-clean.webm>
+    </video>
+        </div>
     </div>
 </body>
 
