@@ -14,4 +14,29 @@ window.addEventListener("load", function() {
     videoContainer.addEventListener("mousemove", trackLocation, false);
     videoContainer.addEventListener("touchstart", trackLocation, false);
     videoContainer.addEventListener("touchmove", trackLocation, false);
+    // video widgets
+    let videoWidgets = document.getElementsByClassName("video-widget");
+    var playBtn = document.getElementById("playBtn");
+    var pauseBtn = document.getElementById("pauseBtn");
+    var restartBtn = document.getElementById("restartBtn");
+
+    pauseBtn.onclick = function() {
+        for (video of videoWidgets) {
+            video.pause();
+        }
+    };
+
+    playBtn.onclick = function() {
+        for (video of videoWidgets) {
+            video.play();
+        }
+    };
+
+    restartBtn.onclick = function() {
+        for (video of videoWidgets) {
+            video.pause();
+            video.currentTime = 0;
+            video.play();
+        }
+    };
 });
