@@ -6,12 +6,15 @@ window.addEventListener("load", function() {
             videoClipper.style.width = position + "%";
             clippedVideo.style.width = (100 / position) * 100 + "%";
             clippedVideo.style.zIndex = 3;
+            divider.style.left = position + "%";
         }
     }
     var videoContainer = document.getElementById("video-compare-container"),
         videoClipper = document.getElementById("video-clipper"),
-        clippedVideo = videoClipper.getElementsByTagName("video")[0];
-    videoContainer.addEventListener("mousemove", trackLocation, false);
+        clippedVideo = videoClipper.getElementsByTagName("video")[0],
+        divider = document.getElementsByClassName("divider")[0];
+    videoClipper = document.getElementById("video-clipper"),
+        videoContainer.addEventListener("mousemove", trackLocation, false);
     videoContainer.addEventListener("touchstart", trackLocation, false);
     videoContainer.addEventListener("touchmove", trackLocation, false);
     // video widgets
