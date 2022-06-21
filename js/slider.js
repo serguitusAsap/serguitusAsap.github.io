@@ -19,9 +19,12 @@ window.addEventListener("load", function() {
     videoContainer.addEventListener("touchmove", trackLocation, false);
     // video widgets
     let videoWidgets = document.getElementsByClassName("video-widget");
-    var playBtn = document.getElementById("playBtn");
-    var pauseBtn = document.getElementById("pauseBtn");
-    var restartBtn = document.getElementById("restartBtn");
+    let backBtn = document.getElementById("backBtn");
+    let playBtn = document.getElementById("playBtn");
+    let pauseBtn = document.getElementById("pauseBtn");
+    let restartBtn = document.getElementById("restartBtn");
+    let forwardBtn = document.getElementById("forwardBtn");
+    let frameTime = 1 / 25 //fps = 25
 
     pauseBtn.onclick = function() {
         for (video of videoWidgets) {
@@ -40,6 +43,27 @@ window.addEventListener("load", function() {
             video.pause();
             video.currentTime = 0;
             video.play();
+        }
+    };
+
+    backBtn.onclick = function() {
+        for (video of videoWidgets) {
+            video.pause();
+        }
+        for (video of videoWidgets) {
+            video.currentTime = Math.max(0, video.currentTime - frameTime);
+        }
+    };
+
+    forwardBtn.onclick = function() {
+        for (video of videoWidgets) {
+            video.pause();
+        }
+        for (video of videoWidgets) {
+            video.currentTime = Math.min(
+                video.duration,
+                video.currentTime + frameTime
+            );
         }
     };
 });
