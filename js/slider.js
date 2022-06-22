@@ -36,23 +36,50 @@ window.addEventListener("load", function() {
 
     // video widgets
     let videoWidgets = document.getElementsByClassName("video-widget");
+    let videoL = document.getElementById("video-left")
+    let videoR = document.getElementById("video-right");
     let backBtn = document.getElementById("backBtn");
     let playBtn = document.getElementById("playBtn");
     let playIcon = document.getElementById("playIcon");
     let forwardBtn = document.getElementById("forwardBtn");
     let frameTime = 1 / 25 //fps = 25
 
+    function seek() {
+        videoR.currentTime = videoL.currentTime;
+    }
+
+    videoL.addEventListener("seeked", () => {
+        window.webkitRequestAnimationFrame(seek);
+    });
+
+    videoL.addEventListener("play", function() {
+        videoR.play();
+        videoR.currentTime = this.currentTime;
+    });
+
+    videoL.addEventListener("pause", function() {
+        videoR.pause();
+        videoR.currentTime = this.currentTime;
+    });
+
     playBtn.onclick = function() {
-        for (video of videoWidgets) {
-            if (video.paused) {
-                video.play();
-                console.log("apretado:" + playIcon);
-                playIcon.setAttribute("class", "bi bi-pause");
-            } else {
-                video.pause();
-                playIcon.setAttribute("class", "bi bi-play");
-            }
+        if (videoL.paused) {
+            videoL.play();
+            playIcon.setAttribute("class", "bi bi-pause");
+        } else {
+            videoL.pause();
+            playIcon.setAttribute("class", "bi bi-play");
         }
+        // for (video of videoWidgets) {
+        //     if (video.paused) {
+        //         video.play();
+        //         console.log("apretado:" + playIcon);
+        //         playIcon.setAttribute("class", "bi bi-pause");
+        //     } else {
+        //         video.pause();
+        //         playIcon.setAttribute("class", "bi bi-play");
+        //     }
+        // }
     };
 
     backBtn.onclick = function() {

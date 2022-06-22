@@ -18,12 +18,14 @@
         <button id="forwardBtn" class="btn btn-success m-2"> <i class="bi bi-skip-forward"></i> </button>
     </div>
     <div id="video-compare-container">
-        <video playsinline autoplay muted loop poster="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/dirty.jpg" class="video-widget video-right" data-anchor="video-right">
+        <video playsinline autoplay muted loop poster="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/dirty.jpg" class="video-widget video-right" id="video-right">
+            <source src=videos/reconst_id=15196_rate=0_lossless.mp4>
             <source src=https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/floodplain-dirty.mp4>
             <source src=https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/floodplain-dirty.webm>
         </video>
         <div id="video-clipper">
-            <video playsinline autoplay muted loop poster="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/clean.jpg" class="video-widget video-left" data-anchor="video-left">
+            <video playsinline autoplay muted loop poster="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/clean.jpg" class="video-widget video-left" id="video-left">
+                <source src=videos/reconst_id=SVT_AV1_comparison_rate=0_bpp_factor=1_lossless.mp4>
                 <source src=https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/floodplain-clean.mp4>
                 <source src=https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/floodplain-clean.webm>
             </video>
