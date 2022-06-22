@@ -1,27 +1,39 @@
 window.addEventListener("load", function() {
+
+    var dragging = false;
+
     function trackLocation(e) {
-        var rect = videoContainer.getBoundingClientRect(),
-            position = ((e.pageX - rect.left) / videoContainer.offsetWidth) * 100;
-        if (position <= 100) {
-            videoClipper.style.width = position + "%";
-            clippedVideo.style.width = (100 / position) * 100 + "%";
-            clippedVideo.style.zIndex = 3;
-            divider.style.left = position + "%";
-            //dividerIcon.style.left = position + "%"
+        if (dragging) {
+            var rect = videoContainer.getBoundingClientRect(),
+                position = ((e.pageX - rect.left) / videoContainer.offsetWidth) * 100;
+            if (position <= 100) {
+                videoClipper.style.width = position + "%";
+                clippedVideo.style.width = (100 / position) * 100 + "%";
+                clippedVideo.style.zIndex = 3;
+                divider.style.left = position + "%";
+            }
         }
     }
+
+    function enableDrag(e) {
+        dragging = true;
+    }
+
+    function disableDrag(e) {
+        dragging = false;
+    }
+
     var videoContainer = document.getElementById("video-compare-container"),
         videoClipper = document.getElementById("video-clipper"),
         clippedVideo = videoClipper.getElementsByTagName("video")[0],
         divider = document.getElementsByClassName("divider")[0];
-    //dividerIcon = document.getElementsByClassName("dividerIcon")[0];
-    videoClipper = document.getElementById("video-clipper");
-    //videoContainer.addEventListener("dragstart", trackLocation, false);
-    videoContainer.addEventListener("dragend", trackLocation, false);
-    videoContainer.addEventListener("drag", trackLocation, false);
-    //dividerIcon.addEventListener("drag", trackLocation, false);
+    videoContainer.addEventListener("mousemove", trackLocation, false);
+    divider.addEventListener("mousedown", enableDrag, false);
+    divider.addEventListener("mouseup", disableDrag, false);
     videoContainer.addEventListener("touchstart", trackLocation, false);
     videoContainer.addEventListener("touchmove", trackLocation, false);
+
+
     // video widgets
     let videoWidgets = document.getElementsByClassName("video-widget");
     let backBtn = document.getElementById("backBtn");
@@ -63,9 +75,4 @@ window.addEventListener("load", function() {
             );
         }
     };
-
-    function showDividerInfo() {
-        $(".divider-info").text("Drag Slider to Compare");
-    }
-
 });
