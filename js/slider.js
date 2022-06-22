@@ -7,42 +7,39 @@ window.addEventListener("load", function() {
             clippedVideo.style.width = (100 / position) * 100 + "%";
             clippedVideo.style.zIndex = 3;
             divider.style.left = position + "%";
+            //dividerIcon.style.left = position + "%"
         }
     }
     var videoContainer = document.getElementById("video-compare-container"),
         videoClipper = document.getElementById("video-clipper"),
         clippedVideo = videoClipper.getElementsByTagName("video")[0],
         divider = document.getElementsByClassName("divider")[0];
-    videoClipper = document.getElementById("video-clipper"),
-        videoContainer.addEventListener("mousemove", trackLocation, false);
+    //dividerIcon = document.getElementsByClassName("dividerIcon")[0];
+    videoClipper = document.getElementById("video-clipper");
+    //videoContainer.addEventListener("dragstart", trackLocation, false);
+    videoContainer.addEventListener("dragend", trackLocation, false);
+    videoContainer.addEventListener("drag", trackLocation, false);
+    //dividerIcon.addEventListener("drag", trackLocation, false);
     videoContainer.addEventListener("touchstart", trackLocation, false);
     videoContainer.addEventListener("touchmove", trackLocation, false);
     // video widgets
     let videoWidgets = document.getElementsByClassName("video-widget");
     let backBtn = document.getElementById("backBtn");
     let playBtn = document.getElementById("playBtn");
-    let pauseBtn = document.getElementById("pauseBtn");
-    let restartBtn = document.getElementById("restartBtn");
+    let playIcon = document.getElementById("playIcon");
     let forwardBtn = document.getElementById("forwardBtn");
     let frameTime = 1 / 25 //fps = 25
 
-    pauseBtn.onclick = function() {
-        for (video of videoWidgets) {
-            video.pause();
-        }
-    };
-
     playBtn.onclick = function() {
         for (video of videoWidgets) {
-            video.play();
-        }
-    };
-
-    restartBtn.onclick = function() {
-        for (video of videoWidgets) {
-            video.pause();
-            video.currentTime = 0;
-            video.play();
+            if (video.paused) {
+                video.play();
+                console.log("apretado:" + playIcon);
+                playIcon.setAttribute("class", "bi bi-pause");
+            } else {
+                video.pause();
+                playIcon.setAttribute("class", "bi bi-play");
+            }
         }
     };
 
@@ -66,4 +63,9 @@ window.addEventListener("load", function() {
             );
         }
     };
+
+    function showDividerInfo() {
+        $(".divider-info").text("Drag Slider to Compare");
+    }
+
 });
