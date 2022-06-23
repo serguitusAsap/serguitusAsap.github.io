@@ -1,5 +1,9 @@
 window.addEventListener("load", function() {
 
+    var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+        window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+    window.requestAnimationFrame = requestAnimationFrame;
+
     var dragging = false;
 
     function trackLocation(e) {
@@ -49,17 +53,17 @@ window.addEventListener("load", function() {
     }
 
     videoL.addEventListener("seeked", () => {
-        window.webkitRequestAnimationFrame(seek);
+        window.requestAnimationFrame(seek);
     });
 
     videoL.addEventListener("play", function() {
         videoR.play();
-        videoR.currentTime = this.currentTime;
+        seek();
     });
 
     videoL.addEventListener("pause", function() {
         videoR.pause();
-        videoR.currentTime = this.currentTime;
+        seek();
     });
 
     playBtn.onclick = function() {
