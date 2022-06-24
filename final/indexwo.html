@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>WaveOne GAN Demo</title>
+    <!-- Source from https://www.cssscript.com/image-comparison-pixelcompare/ -->
+    <!-- Kube CSS -->
+    <link rel="stylesheet" href="./css/pixelcompare.css">
+    <link rel="stylesheet" href="./style.css">
+    <script src="js/slider.js"></script>
+</head>
+<body>
+  <div class="container mt-4">
+    <h2 class="text-center">WaveOne GANs Demo</h2>
+    <div class="mt-4 p-5 bg-secondary text-white rounded">
+      <div class="row" id="gallery" data-toggle="modal" data-target="#exampleModal">
+        <div class="col-12 col-sm-4 col-lg-2">
+          <img class="img-thumbnail" src="./assets/landscape.jpg" data-target="#carouselExample" data-slide-to="0">
+        </div>
+        <div class="col-12 col-sm-4 col-lg-2">
+          <img class="img-thumbnail" src="./assets/camera-1.jpg" data-target="#carouselExample" data-slide-to="1">
+        </div>
+        <div class="col-12 col-sm-4 col-lg-2">
+          <img class="img-thumbnail" src="./assets/Sochi_11April2005.jpg" data-target="#carouselExample" data-slide-to="2">
+        </div>
+        <div class="col-12 col-lg-4"></div>
+        <div class="col-12 col-sm-4 col-lg-2 custom-menu-container">
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="#" data-variant="option1">codec 1</a></li>
+            <li><a class="dropdown-item" href="#" data-variant="option2">codec 2</a></li>
+            <li><a class="dropdown-item" href="#" data-variant="option3">codec 3</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="ex-preview">
+      <div class="pixelcompare" data-pixelcompare>
+        <img src="#" width="100%"/>
+        <img src="#" width="100%"/>
+      </div>
+    </div>
+
+
+  </div>
+  <!-- Optional JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="./js/pixelcompare.min.js"></script>
+</body>
+</html>
