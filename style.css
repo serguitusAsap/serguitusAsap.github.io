@@ -122,7 +122,7 @@ h4 {
 }
 
 .btn.disabled-button:disabled {
-    background-color: #171a1d;
+    background-color: #5AA2D8;
     opacity: 100%;
 }
 
@@ -137,7 +137,7 @@ h4 {
 
 .left-selector {
     position: absolute;
-    top: 90px;
+    top: 125px;
     left: 10px;
     z-index: 3;
 }
@@ -358,12 +358,8 @@ h4 {
     margin-top: -5px;
 }
 
-
-/************************ VIDEO STYLES ****************************************/
-
-body {
-    background: #333;
-    margin: 2rem;
+strong {
+    font-weight: bold;
 }
 
 #video-compare-container {
@@ -443,6 +439,3 @@ body {
     transform: translate(-50%, 100%);
     z-index: 11;
 }
-
-
-/************** END OF VIDEO STYLES ************************************/
