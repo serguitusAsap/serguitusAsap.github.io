@@ -105,29 +105,6 @@ $(document).ready(function() {
         showImgAndUpdateUI(currentImage);
     });
 
-    // NOT NEEDEED ANYMORE
-    // $('#toggle-aff-fa-footnote').on('click', function(e) {
-    //     $('#footnote-aff-fa').toggle();
-    //     $('#footnote-aff-mi').hide();
-    // });
-    // $('#toggle-aff-mi-footnote').on('click', function(e) {
-    //     $('#footnote-aff-mi').toggle();
-    //     $('#footnote-aff-fa').hide();
-    // });
-    // $("#view-full-res").hover(
-    //     function() {
-    //         let title = $(this).attr("data-title");
-    //         $('<div/>', {
-    //             text: title,
-    //             class: 'overlay-box'
-    //         }).appendTo(this);
-    //     },
-    //     function() {
-    //         $(document).find("div.overlay-box").remove();
-    //     }
-    // );
-    // UP TO HERE NOT NEEDED ANYMORE
-
     // Add the img tags.
     $("#right-imgs").append($("<img>"));
     $("#left-img").append($("<img>", { id: "left" }));
@@ -239,7 +216,31 @@ $(document).ready(function() {
         seek();
     });
 
+    document.addEventListener(
+        "keydown",
+        function(e) {
+            switch (e.code) {
+                case "Space":
+                    e.preventDefault();
+                    playToggle();
+                    break;
+                case "ArrowLeft":
+                    e.preventDefault();
+                    bkStep();
+                    break;
+                case "ArrowRight":
+                    e.preventDefault();
+                    fwStep();
+                    break;
+            }
+        });
+
+
     playBtn.onclick = function() {
+        playToggle();
+    };
+
+    function playToggle() {
         if (videoL.paused) {
             videoL.play();
             playIcon.setAttribute("class", "bi bi-pause");
@@ -247,9 +248,13 @@ $(document).ready(function() {
             videoL.pause();
             playIcon.setAttribute("class", "bi bi-play");
         }
-    };
+    }
 
     backBtn.onclick = function() {
+        bkStep();
+    };
+
+    function bkStep() {
         for (video of videoWidgets) {
             video.pause();
         }
@@ -259,6 +264,10 @@ $(document).ready(function() {
     };
 
     forwardBtn.onclick = function() {
+        fwStep();
+    };
+
+    function fwStep() {
         for (video of videoWidgets) {
             video.pause();
         }
@@ -268,18 +277,13 @@ $(document).ready(function() {
                 video.currentTime + frameTime
             );
         }
-    };
+    }
 });
-
-function showDividerInfo() {
-    $(".divider-info").text("Drag Slider to Compare");
-}
 
 function seek() {
     let video1 = document.getElementById("video-left");
     let video2 = document.getElementById("video-right");
     video2.currentTime = video1.currentTime;
-    console.log("seek called");
 }
 
 function replaceVideo(videoObj, videoList, thumb) {
@@ -362,11 +366,6 @@ function showRights(imgName, imgs, thumb) {
         }
         let caption = item[captionIndex];
         caption = caption.replace("x", "\u00D7");
-        //let imgTag = $("<img>", { 'src': PREFIX + imgName, 'id': 'right-img-' + index.toString() });
-        //if (index !== 0) {
-        //    $(imgTag).hide();
-        //}
-        //$(rightsDiv).append(imgTag);
         let caption_pre = caption.split("(")[0];
         let caption_post = caption.split("(")[1];
         let button = $("<button>", {
@@ -392,8 +391,6 @@ function showRights(imgName, imgs, thumb) {
             }
             /// Switch images
             replaceVideo(videoRObj, item[0], thumb);
-            // $('#right-img-' + newIndex).show();
-            // $('#right-img-' + oldIndex).hide();
 
             /// First disable old button
             $(oldActiveButton).removeClass("active");
@@ -495,91 +492,91 @@ function drags(dragElement, resizeElement, container) {
 }
 
 // VIDEO SCRIPTS ---------------------------
-window.addEventListener("load", function() {
-    // var requestAnimationFrame =
-    //     window.requestAnimationFrame ||
-    //     window.mozRequestAnimationFrame ||
-    //     window.webkitRequestAnimationFrame ||
-    //     window.msRequestAnimationFrame;
-    // window.requestAnimationFrame = requestAnimationFrame;
-    // var dragging = false;
-    // function trackLocation(e) {
-    //     if (dragging) {
-    //         var rect = videoContainer.getBoundingClientRect(),
-    //             position =
-    //             ((e.pageX - rect.left) / videoContainer.offsetWidth) * 100;
-    //         if (position <= 100) {
-    //             videoClipper.style.width = position + "%";
-    //             clippedVideo.style.width = (100 / position) * 100 + "%";
-    //             clippedVideo.style.zIndex = 3;
-    //             divider.style.left = position + "%";
-    //         }
-    //     }
-    // }
-    // function enableDrag(e) {
-    //     dragging = true;
-    // }
-    // function disableDrag(e) {
-    //     dragging = false;
-    // }
-    // var videoContainer = document.getElementById("video-compare-container"),
-    //     videoClipper = document.getElementById("video-clipper"),
-    //     clippedVideo = videoClipper.getElementsByTagName("video")[0],
-    //     divider = document.getElementsByClassName("divider")[0];
-    // videoContainer.addEventListener("mousemove", trackLocation, false);
-    // divider.addEventListener("mousedown", enableDrag, false);
-    // divider.addEventListener("mouseup", disableDrag, false);
-    // videoContainer.addEventListener("touchstart", trackLocation, false);
-    // videoContainer.addEventListener("touchmove", trackLocation, false);
-    // // video widgets
-    // let videoWidgets = document.getElementsByClassName("video-widget");
-    // let videoL = document.getElementById("video-left");
-    // let videoR = document.getElementById("video-right");
-    // let backBtn = document.getElementById("backBtn");
-    // let playBtn = document.getElementById("playBtn");
-    // let playIcon = document.getElementById("playIcon");
-    // let forwardBtn = document.getElementById("forwardBtn");
-    // let frameTime = 1 / 25; //fps = 25
-    // function seek() {
-    //     videoR.currentTime = videoL.currentTime;
-    // }
-    // videoL.addEventListener("seeked", () => {
-    //     window.requestAnimationFrame(seek);
-    // });
-    // videoL.addEventListener("play", function() {
-    //     videoR.play();
-    //     seek();
-    // });
-    // videoL.addEventListener("pause", function() {
-    //     videoR.pause();
-    //     seek();
-    // });
-    // playBtn.onclick = function() {
-    //     if (videoL.paused) {
-    //         videoL.play();
-    //         playIcon.setAttribute("class", "bi bi-pause");
-    //     } else {
-    //         videoL.pause();
-    //         playIcon.setAttribute("class", "bi bi-play");
-    //     }
-    // };
-    // backBtn.onclick = function() {
-    //     for (video of videoWidgets) {
-    //         video.pause();
-    //     }
-    //     for (video of videoWidgets) {
-    //         video.currentTime = Math.max(0, video.currentTime - frameTime);
-    //     }
-    // };
-    // forwardBtn.onclick = function() {
-    //     for (video of videoWidgets) {
-    //         video.pause();
-    //     }
-    //     for (video of videoWidgets) {
-    //         video.currentTime = Math.min(
-    //             video.duration,
-    //             video.currentTime + frameTime
-    //         );
-    //     }
-    // };
-});
+// window.addEventListener("load", function() {
+// var requestAnimationFrame =
+//     window.requestAnimationFrame ||
+//     window.mozRequestAnimationFrame ||
+//     window.webkitRequestAnimationFrame ||
+//     window.msRequestAnimationFrame;
+// window.requestAnimationFrame = requestAnimationFrame;
+// var dragging = false;
+// function trackLocation(e) {
+//     if (dragging) {
+//         var rect = videoContainer.getBoundingClientRect(),
+//             position =
+//             ((e.pageX - rect.left) / videoContainer.offsetWidth) * 100;
+//         if (position <= 100) {
+//             videoClipper.style.width = position + "%";
+//             clippedVideo.style.width = (100 / position) * 100 + "%";
+//             clippedVideo.style.zIndex = 3;
+//             divider.style.left = position + "%";
+//         }
+//     }
+// }
+// function enableDrag(e) {
+//     dragging = true;
+// }
+// function disableDrag(e) {
+//     dragging = false;
+// }
+// var videoContainer = document.getElementById("video-compare-container"),
+//     videoClipper = document.getElementById("video-clipper"),
+//     clippedVideo = videoClipper.getElementsByTagName("video")[0],
+//     divider = document.getElementsByClassName("divider")[0];
+// videoContainer.addEventListener("mousemove", trackLocation, false);
+// divider.addEventListener("mousedown", enableDrag, false);
+// divider.addEventListener("mouseup", disableDrag, false);
+// videoContainer.addEventListener("touchstart", trackLocation, false);
+// videoContainer.addEventListener("touchmove", trackLocation, false);
+// // video widgets
+// let videoWidgets = document.getElementsByClassName("video-widget");
+// let videoL = document.getElementById("video-left");
+// let videoR = document.getElementById("video-right");
+// let backBtn = document.getElementById("backBtn");
+// let playBtn = document.getElementById("playBtn");
+// let playIcon = document.getElementById("playIcon");
+// let forwardBtn = document.getElementById("forwardBtn");
+// let frameTime = 1 / 25; //fps = 25
+// function seek() {
+//     videoR.currentTime = videoL.currentTime;
+// }
+// videoL.addEventListener("seeked", () => {
+//     window.requestAnimationFrame(seek);
+// });
+// videoL.addEventListener("play", function() {
+//     videoR.play();
+//     seek();
+// });
+// videoL.addEventListener("pause", function() {
+//     videoR.pause();
+//     seek();
+// });
+// playBtn.onclick = function() {
+//     if (videoL.paused) {
+//         videoL.play();
+//         playIcon.setAttribute("class", "bi bi-pause");
+//     } else {
+//         videoL.pause();
+//         playIcon.setAttribute("class", "bi bi-play");
+//     }
+// };
+// backBtn.onclick = function() {
+//     for (video of videoWidgets) {
+//         video.pause();
+//     }
+//     for (video of videoWidgets) {
+//         video.currentTime = Math.max(0, video.currentTime - frameTime);
+//     }
+// };
+// forwardBtn.onclick = function() {
+//     for (video of videoWidgets) {
+//         video.pause();
+//     }
+//     for (video of videoWidgets) {
+//         video.currentTime = Math.min(
+//             video.duration,
+//             video.currentTime + frameTime
+//         );
+//     }
+// };
+// });
